@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,200"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <style>
+            body {
+                background: url(https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80)
+                    no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                font-family: "Fira Sans Condensed";
+            }
+
+            /* Style for select element */
+            #city-select {
+                background-color: transparent;
+                border: none;
+                border-bottom: 6px solid #555;
+                color: #555;
+                font-size: 22px;
+                font-weight: bold;
+                padding: 5px 10px;
+                width: 500px;
+                margin: 0 auto;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+            }
+
+            /* Style for select element when hovered */
+            #city-select:hover {
+                border-bottom-color: #333;
+            }
+
+            /* Style for select element when focused */
+            #city-select:focus {
+                outline: none;
+                border-bottom-color: #333;
+            }
+
+            /* Style for select element when an option is selected */
+            #city-select option:checked {
+                background-color: #333;
+                color: #fff;
+            }
+
+            /* Style for select element when an option is hovered */
+            #city-select option:hover {
+                background-color: #555;
+                color: #fff;
+            }
+
+            /* Animation for select element when focused */
+            #city-select:focus {
+                transform: scale(1.1);
+            }
+            @media only screen and (max-width: 768px) {
+                #city-select {
+                    font-size: 11px;
+                }
+            }
+            .dropdown {
+                display: flex;
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            .dropdown .btn-secondary {
+                width: 100%;
+                text-align: left;
+                background-color: #555353;
+                color: white;
+                border-color: #555353;
+            }
+
+            .dropdown .btn-secondary:hover,
+            .dropdown .btn-secondary:focus {
+                background-color: #555353;
+                color: white;
+                border-color: #555353;
+            }
+
+            .dropdown-menu {
+                width: 100%;
+                background-color: #555353;
+                border: none;
+            }
+
+            .dropdown-item {
+                color: white;
+            }
+
+            .dropdown-item:hover,
+            .dropdown-item:focus {
+                background-color: #2c2b2b;
+                color: white;
+            }
+            @media only screen and (max-width: 768px) {
+                .dropdown {
+                    width: 150px;
+                }
+            }
+            .continer {
+                margin-top: 5vh;
+            }
+            .card {
+                opacity: 0.9;
+                font-weight: 600;
+                font-size: 17px;
+                background-color: rgb(85, 79, 79);
+                color: white;
+                text-transform: uppercase;
+                transition: all 0.2s ease-in-out;
+                transform-origin: center;
+                margin-bottom: 50px;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            li:hover {
+                background-color: rgb(58, 50, 50);
+                color: white;
+            }
+            p {
+                text-transform: none;
+            }
+            select {
+                background-color: rgb(177, 23, 23);
+                margin-top: 50px;
+            }
+
+            .footer {
+                margin-top: 10px;
+                display: flex;
+                bottom: 3px;
+                width: 100%;
+                background-color: #333;
+                color: #fff;
+                height: 75px;
+                opacity: 0.8;
+            }
+            .footer a:hover {
+                opacity: 0.7;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="img-bk" class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h5 class="text-white h4">Collapsed content</h5>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <h2 style="color: white">
+                    <span style="color: rgb(96, 96, 57)">W</span
+                    ><span
+                        style="color: white"
+                        class="material-symbols-outlined"
+                    >
+                        home_app_logo </span
+                    >day
+                </h2>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent"
+                    aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <div
+            class="continer continer-select d-flex justify-content-center align-items-center flex-wrap"
+        >
+            <select
+                id="city-select"
+                style="width: 20%; margin: 0 auto"
+                aria-placeholder="select your city"
+                class="form-select mt-3"
+                aria-label="Default select example"
+            >
+                <option value="Amsterdam">Amsterdam</option>
+                <option value="London">London</option>
+                <option value="New York">New York</option>
+                <option value="Paris">Paris</option>
+                <option value="Tokyo">Tokyo</option>
+                <option value="Brussels">Brussels</option>
+                <option value="Aleppo">Aleppo</option>
+                <option value="Brasilia">Brasilia</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Dortmund">Dortmund</option>
+            </select>
+        </div>
+        <div
+            class="dropdown continer continer-select d-flex justify-content-center align-items-center flex-wrap"
+        >
+            <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownLanguageButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                Select Language
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownLanguageButton">
+                <li>
+                    <a class="dropdown-item" href="#" id="en-language"
+                        >English</a
+                    >
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" id="ar-language"
+                        >العربية</a
+                    >
+                </li>
+            </ul>
+        </div>
+        <div
+            class="continer d-flex justify-content-around align-items-center flex-wrap p-4 gap-3 text-center"
+        >
+            <div class="card" style="width: 18rem">
+                <div class="card-body py-4">
+                    <h5>Temperature</h5>
+                    <hr />
+
+                    <p class="card-text">
+                        The current weather information for the city you have
+                        chosen
+                    </p>
+                </div>
+                <ul id="ul-list-left" class="list-group list-group-flush"></ul>
+                <div class="card-body" style="letter-spacing: 20px">
+                    <span class="material-symbols-outlined"> weather_mix </span>
+                    <span> </span>
+                    <span class="material-symbols-outlined"> thermostat </span>
+                    <span class="material-symbols-outlined"> thermostat </span>
+                </div>
+            </div>
+            <div
+                class="card"
+                style="
+                    width: 35rem;
+                    opacity: 0.8;
+                    background-color: rgb(96, 74, 74);
+                    color: white;
+                    letter-spacing: 3px;
+                    font-weight: 900;
+                    font-size: 20px;
+                    text-transform: uppercase;
+                "
+            >
+                <div class="card-body">
+                    <h2
+                        id="city-name"
+                        style="background-color: black; padding: 3px"
+                        class="card-title"
+                    ></h2>
+                    <span class="material-symbols-outlined"> house </span>
+                    <hr />
+                    <h5 id="time-zone"></h5>
+                    <span class="material-symbols-outlined">
+                        hourglass_top
+                    </span>
+                    <hr />
+                    <span id="sunrise"> </span>
+                    <span class="material-symbols-outlined">clear_day</span
+                    ><br />
+                    <hr />
+                    <hr />
+                    <span id="sunset"> </span
+                    ><span class="material-symbols-outlined"
+                        >sunny_snowing</span
+                    >
+                    <hr />
+                </div>
+                <ul id="ul-list" class="list-group list-group-flush"></ul>
+                <div class="card-coming-days">
+                    <span>Weather for the next 15 days</span><br />
+                    <button type="button" class="btn btn-secondary my-3">
+                        More Info
+                    </button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem">
+                <div class="card-body py-4">
+                    <h5 class="card-title">Humidity and wind</h5>
+                    <hr />
+                    <p class="card-text">
+                        Current humidity and wind for the city you have chosen
+                    </p>
+                </div>
+                <ul id="ul-list-right" class="list-group list-group-flush"></ul>
+                <div class="card-body">
+                    <span class="material-symbols-outlined">
+                        sunny
+                        <span class="material-symbols-outlined">
+                            partly_cloudy_day
+                        </span>
+                        <span class="material-symbols-outlined"> water </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 mb-3">
+                        <div class="text-center mb-3">
+                            <div class="text-center text-muted pt-2">
+                                &copy; 2023 Developer Marwan Alhatab
+                            </div>
+                            <a
+                                href="https://www.facebook.com/profile.php?id=100025018266565"
+                                class="me-4"
+                            >
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="me-4">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/marwan-alhatab-060a1423b/"
+                                class="me-4"
+                            >
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
