@@ -150,9 +150,3 @@ dropdownMenu.addEventListener("mouseleave", function () {
 const initialCity = cities[0]
 getData(initialCity)
 setBackgroundImage(initialCity)
-const express = require("express")
-const cors = require("cors")
-
-const app = express()
-
-app.use(cors())
