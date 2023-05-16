@@ -41,14 +41,15 @@ languageDropdownItems.forEach((item) => {
 })
 function getData(city, language) {
     language = language || selectedLanguage
-    const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30"
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
+    const proxyUrl = "http://localhost:8080/"
+    const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30";
+    const apiUrl = `${proxyUrl}https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
 
-    axios
-        .get(apiUrl)
-        .then((response) => {
-            console.log(response.data)
-            const { main, name, timezone, wind, sys } = response.data
+    fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            const { main, name, timezone, wind, sys } = data
             const cityName = document.getElementById("city-name")
             cityName.innerHTML = name
 
