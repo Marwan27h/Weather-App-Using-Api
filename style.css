@@ -86,7 +86,7 @@ body {
     color: white;
 }
 
-.continer {
+.container {
     margin-top: 10vh;
 }
 .card {
@@ -103,9 +103,6 @@ body {
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-}
-#ul-list-right li{
-   
 }
 
 li:hover {

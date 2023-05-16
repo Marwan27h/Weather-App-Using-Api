@@ -41,9 +41,9 @@ languageDropdownItems.forEach((item) => {
 })
 function getData(city, language) {
     language = language || selectedLanguage
-    const proxyUrl = "http://localhost:8080/"
-    const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30";
-    const apiUrl = `${proxyUrl}https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
+    const proxy = "https://cors-anywhere.herokuapp.com/"
+    const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30"
+    const apiUrl = `${proxy}https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
 
     fetch(apiUrl)
         .then((response) => response.json())
