@@ -51,86 +51,87 @@ languageDropdownItems.forEach((item) => {
         getData(selectedCity, selectedLanguage)
     })
 })
-function getData(city, language) {
+async function getData(city, language) {
     language = language || selectedLanguage
 
     const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30"
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
 
-    fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            const { main, name, timezone, wind, sys } = data
-            const cityName = document.getElementById("city-name")
-            cityName.innerHTML = name || "Amsterdam"
+    try {
+        const response = await fetch(apiUrl)
+        const data = await response.json()
+        console.log(data)
 
-            const outPutLift = `
-                <li class="list-group-item">${
-                    language === "ar" ? "درجة الحرارة" : "Temperature"
-                }<br>${main.temp}</li>
-                <li class="list-group-item">${
-                    language === "ar" ? "درجة الحرارة المحسوسة" : "Feels like"
-                }<br>${main.feels_like}</li>
-                <li class="list-group-item">${
-                    language === "ar"
-                        ? "درجة الحرارة الدنيا"
-                        : "Minimum temperature"
-                }<br>${main.temp_min}</li>
-                <li class="list-group-item">${
-                    language === "ar"
-                        ? "درجة الحرارة العليا"
-                        : "Maximum temperature"
-                }<br>${main.temp_max}</li>
-            `
-            const outPutRight = `
-                <li class="list-group-item">${
-                    language === "ar" ? "الضغط الجوي" : "Pressure"
-                }<br>${main.pressure}</li>
-                <li class="list-group-item">${
-                    language === "ar" ? "الرطوبة" : "Humidity"
-                }<br>${main.humidity}</li>
-                <li class="list-group-item">${
-                    language === "ar" ? "سرعة الرياح" : "Wind speed"
-                }<br>${wind.speed}</li>
-                <li class="list-group-item">${
-                    language === "ar" ? "زاوية الرياح" : "Wind deg"
-                }<br>${wind.deg}</li>
-            `
-            document.getElementById("ul-list-left").innerHTML = outPutLift
-            document.getElementById("ul-list-right").innerHTML = outPutRight
+        const { main, name, timezone, wind, sys } = data
+        const cityName = document.getElementById("city-name")
+        cityName.innerHTML = name || "Amsterdam"
 
-            const targetTime = Date.now() + timezone * 1000 - 2 * 60 * 60 * 1000 // subtract 2 hours in milliseconds
-            const formattedTime = new Date(targetTime).toLocaleTimeString([], {
-                timeZone: "Europe/Amsterdam",
-            })
-            const timeZone = document.getElementById("time-zone")
-            timeZone.innerHTML = formattedTime
+        const outPutLift = `
+            <li class="list-group-item">${
+                language === "ar" ? "درجة الحرارة" : "Temperature"
+            }<br>${main.temp}</li>
+            <li class="list-group-item">${
+                language === "ar" ? "درجة الحرارة المحسوسة" : "Feels like"
+            }<br>${main.feels_like}</li>
+            <li class="list-group-item">${
+                language === "ar"
+                    ? "درجة الحرارة الدنيا"
+                    : "Minimum temperature"
+            }<br>${main.temp_min}</li>
+            <li class="list-group-item">${
+                language === "ar"
+                    ? "درجة الحرارة العليا"
+                    : "Maximum temperature"
+            }<br>${main.temp_max}</li>
+        `
 
-            const sunrise = document.getElementById("sunrise")
-            sunRiceTime = new Date(sys.sunrise * 1000).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-            })
-            sunrise.innerHTML = `${
-                language === "ar" ? "شروق الشمس" : "Sunrise"
-            } : ${sunRiceTime}`
+        const outPutRight = `
+            <li class="list-group-item">${
+                language === "ar" ? "الضغط الجوي" : "Pressure"
+            }<br>${main.pressure}</li>
+            <li class="list-group-item">${
+                language === "ar" ? "الرطوبة" : "Humidity"
+            }<br>${main.humidity}</li>
+            <li class="list-group-item">${
+                language === "ar" ? "سرعة الرياح" : "Wind speed"
+            }<br>${wind.speed}</li>
+            <li class="list-group-item">${
+                language === "ar" ? "زاوية الرياح" : "Wind deg"
+            }<br>${wind.deg}</li>
+        `
 
-            const sunSet = document.getElementById("sunset")
-            sunSetTime = new Date(sys.sunset * 1000).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-            })
-            sunSet.innerHTML = `${
-                language === "ar" ? "غروب الشمس" : "Sunset"
-            } : ${sunSetTime}`
+        document.getElementById("ul-list-left").innerHTML = outPutLift
+        document.getElementById("ul-list-right").innerHTML = outPutRight
+
+        const targetTime = Date.now() + timezone * 1000 - 2 * 60 * 60 * 1000 // subtract 2 hours in milliseconds
+        const formattedTime = new Date(targetTime).toLocaleTimeString([], {
+            timeZone: "Europe/Amsterdam",
         })
-        .catch((error) => {
-            console.log(error)
-            const errorMessage = document.getElementById("error-message")
-            errorMessage.innerHTML =
-                "Sorry, there was an error. Please try again later."
+        const timeZone = document.getElementById("time-zone")
+        timeZone.innerHTML = formattedTime
+
+        const sunrise = document.getElementById("sunrise")
+        sunRiceTime = new Date(sys.sunrise * 1000).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
         })
+        sunrise.innerHTML = `${
+            language === "ar" ? "شروق الشمس" : "Sunrise"
+        } : ${sunRiceTime}`
+        const sunSet = document.getElementById("sunset")
+        sunSetTime = new Date(sys.sunset * 1000).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+        })
+        sunSet.innerHTML = `${
+            language === "ar" ? "غروب الشمس" : "Sunset"
+        } : ${sunSetTime}`
+    } catch (error) {
+        console.log(error)
+        const errorMessage = document.getElementById("error-message")
+        errorMessage.innerHTML =
+            "Sorry, there was an error. Please try again later."
+    }
 }
 
 // Initialize with the first city in the array
