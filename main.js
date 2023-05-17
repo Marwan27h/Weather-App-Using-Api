@@ -151,4 +151,4 @@ dropdownMenu.addEventListener("mouseleave", function () {
 const initialCity = cities[0]
 getData(initialCity)
 setBackgroundImage(initialCity)
-window.addEventListener("load", getData)
+
