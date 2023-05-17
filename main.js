@@ -1,3 +1,16 @@
+const cities = [
+    "Amsterdam",
+    "London",
+    "New York",
+    "Paris",
+    "Tokyo",
+    "Aleppo",
+    "Brussels",
+    "South Africa",
+    "Brasilia",
+    "Dubai",
+    "Dortmund",
+]
 const imageSources = {
     Amsterdam:
         "url('https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')",
@@ -9,7 +22,6 @@ const imageSources = {
     Aleppo: "url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85.jpg/1356px-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85.jpg')",
     Brussels:
         "url('https://rare-gallery.com/uploads/posts/1045535-sunlight-sunset-cityscape-night-architecture-reflection-sky-clouds-skyline-blue-evening-morning-horizon-bokeh-Europe-dusk-Belgium-Brussels-light-cloud-dawn-atmosphere-o.jpg')",
-
     Brasilia:
         "url('https://images.lacotedesmontres.com/mesIMG/imgStd/80660.jpg')",
     Dubai: "url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aXNsYW18ZW58MHx8MHx8&w=1000&q=80')",
@@ -41,7 +53,7 @@ languageDropdownItems.forEach((item) => {
 })
 function getData(city, language) {
     language = language || selectedLanguage
-    const proxy = "https://cors-anywhere.herokuapp.com/"
+
     const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30"
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
 
@@ -121,20 +133,6 @@ function getData(city, language) {
         })
 }
 
-const cities = [
-    "Amsterdam",
-    "London",
-    "New York",
-    "Paris",
-    "Tokyo",
-    "Aleppo",
-    "Brussels",
-    "South Africa",
-    "Brasilia",
-    "Dubai",
-    "Dortmund",
-]
-
 // Initialize with the first city in the array
 getData(cities[0])
 const dropdownMenu = document.querySelector(".dropdown-menu")
@@ -149,6 +147,3 @@ dropdownMenu.addEventListener("mouseleave", function () {
 })
 
 const initialCity = cities[0]
-getData(initialCity)
-setBackgroundImage(initialCity)
-
