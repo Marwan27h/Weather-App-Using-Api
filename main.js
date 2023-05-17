@@ -51,7 +51,7 @@ function getData(city, language) {
             console.log(data)
             const { main, name, timezone, wind, sys } = data
             const cityName = document.getElementById("city-name")
-            cityName.innerHTML = name
+            cityName.innerHTML = name || "Amsterdam"
 
             const outPutLift = `
                 <li class="list-group-item">${
