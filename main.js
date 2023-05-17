@@ -43,7 +43,7 @@ function getData(city, language) {
     language = language || selectedLanguage
     const proxy = "https://cors-anywhere.herokuapp.com/"
     const API_KEY = "f6ca1369f1d54215bb23faf68c4f3e30"
-    const apiUrl = `${proxy}https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=${language}`
 
     fetch(apiUrl)
         .then((response) => response.json())
@@ -151,3 +151,4 @@ dropdownMenu.addEventListener("mouseleave", function () {
 const initialCity = cities[0]
 getData(initialCity)
 setBackgroundImage(initialCity)
+window.addEventListener("load", getData)
