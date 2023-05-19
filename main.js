@@ -31,26 +31,15 @@ const imageSources = {
 }
 
 function setBackgroundImage(city) {
-    return new Promise((resolve, reject) => {
-        const body = document.querySelector("body")
-        const imageUrl = imageSources[city]
-
-        if (imageUrl) {
-            body.style.backgroundImage = imageUrl
-            resolve()
-        } else {
-            reject(new Error("Image source not found"))
-        }
-    })
+    const body = document.querySelector("body")
+    body.style.backgroundImage = imageSources[city]
 }
 
 const selectElement = document.querySelector(".form-select")
-
 selectElement.addEventListener("change", (event) => {
     const selectedCity = event.target.value
     getData(selectedCity)
-        .then(() => setBackgroundImage(selectedCity))
-        .catch((error) => console.error(error))
+    setBackgroundImage(selectedCity)
 })
 
 let selectedLanguage = "ar" // default language is Arabic
