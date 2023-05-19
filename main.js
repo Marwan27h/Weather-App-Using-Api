@@ -11,6 +11,7 @@ const cities = [
     "Dubai",
     "Dortmund",
 ]
+
 const imageSources = {
     Amsterdam:
         "url('https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')",
@@ -30,15 +31,26 @@ const imageSources = {
 }
 
 function setBackgroundImage(city) {
-    const body = document.querySelector("body")
-    body.style.backgroundImage = imageSources[city]
+    return new Promise((resolve, reject) => {
+        const body = document.querySelector("body")
+        const imageUrl = imageSources[city]
+
+        if (imageUrl) {
+            body.style.backgroundImage = imageUrl
+            resolve()
+        } else {
+            reject(new Error("Image source not found"))
+        }
+    })
 }
 
 const selectElement = document.querySelector(".form-select")
+
 selectElement.addEventListener("change", (event) => {
     const selectedCity = event.target.value
     getData(selectedCity)
-    setBackgroundImage(selectedCity)
+        .then(() => setBackgroundImage(selectedCity))
+        .catch((error) => console.error(error))
 })
 
 let selectedLanguage = "ar" // default language is Arabic
