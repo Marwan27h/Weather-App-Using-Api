@@ -137,6 +137,7 @@ async function getData(city, language) {
 
 // Initialize with the first city in the array
 getData(cities[0])
+
 const dropdownMenu = document.querySelector(".dropdown-menu")
 const dropdownToggle = document.querySelector(".dropdown-toggle")
 
@@ -147,5 +148,3 @@ dropdownToggle.addEventListener("click", function () {
 dropdownMenu.addEventListener("mouseleave", function () {
     dropdownMenu.classList.remove("show")
 })
-
-const initialCity = cities[0]
